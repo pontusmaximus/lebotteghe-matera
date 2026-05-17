@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: theme('colors.bottega.900');
+  background-color: theme('colors.cream.50');
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-none border border-transparent
+           px-6 py-3 text-sm font-semibold tracking-widest uppercase
+           transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-bottega-700 text-cream-50 hover:bg-bottega-800;
+  }
+  .btn-outline-light {
+    @apply btn border-cream-50 text-cream-50 hover:bg-cream-50 hover:text-bottega-800;
+  }
+  .btn-outline-dark {
+    @apply btn border-bottega-700 text-bottega-700 hover:bg-bottega-700 hover:text-cream-50;
+  }
+  .btn-gold {
+    @apply btn bg-gold-500 text-bottega-900 hover:bg-gold-600 hover:text-cream-50;
+  }
+  .display {
+    font-family: var(--font-display);
+  }
+  .gold-rule {
+    @apply mx-auto my-4 h-px w-24 bg-gold-500;
+  }
+  .label {
+    @apply text-xs uppercase tracking-widest2 text-gold-500;
+  }
+  .field {
+    @apply w-full rounded-none border border-bottega-200 bg-white px-3 py-2.5
+           text-bottega-900 placeholder-bottega-300
+           focus:border-bottega-700 focus:outline-none focus:ring-1 focus:ring-bottega-700;
+  }
+  .menu-card {
+    @apply relative bg-cream-50 bg-plaster border border-bottega-100 shadow-sm;
+  }
+}
+
+/* Subtle painted-plaster background, matches the menu photos */
+.bg-plaster {
+  background-color: theme('colors.cream.50');
+  background-image:
+    radial-gradient(rgba(40, 71, 52, 0.03) 1px, transparent 1px),
+    radial-gradient(rgba(40, 71, 52, 0.02) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Custom scrollbar in cream/green */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: theme('colors.cream.100'); }
+::-webkit-scrollbar-thumb { background: theme('colors.bottega.700'); }
+::-webkit-scrollbar-thumb:hover { background: theme('colors.bottega.800'); }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}

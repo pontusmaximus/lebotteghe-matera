@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+}
+
+model MenuCategory {
+  id        String     @id @default(cuid())
+  slug      String     @unique
+  nameIt    String
+  nameEn    String
+  nameDe    String
+  order     Int        @default(0)
+  items     MenuItem[]
+}
+
+model MenuItem {
+  id           String       @id @default(cuid())
+  category     MenuCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId   String
+  nameIt       String
+  nameEn       String
+  nameDe       String
+  descIt       String?
+  descEn       String?
+  descDe       String?
+  priceCents   Int
+  allergens    String       @default("") // comma-separated allergen numbers, e.g. "1,3,7"
+  isFrozen     Boolean      @default(false)
+  available    Boolean      @default(true)
+  order        Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Reservation {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  date      DateTime // exact date and time (UTC)
+  guests    Int
+  notes     String?
+  language  String   @default("it") // it | de | en
+  status    String   @default("pending") // pending | confirmed | cancelled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+  @@index([status])
+}
+
+model SiteSetting {
+  key   String @id
+  value String
+}
