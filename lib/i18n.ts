@@ -18,8 +18,6 @@ export function isLocale(value: string | undefined | null): value is Locale {
   return !!value && (locales as readonly string[]).includes(value);
 }
 
-type Dict = typeof translations.it;
-
 export const translations = {
   it: {
     nav: {
@@ -333,11 +331,11 @@ export const translations = {
       cancelled: 'Cancelled',
     },
   },
-} as const;
+};
 
-export type Translations = Dict;
+export type Translations = typeof translations.it;
 
-export function t(locale: Locale): Dict {
+export function t(locale: Locale): Translations {
   return translations[locale];
 }
 
