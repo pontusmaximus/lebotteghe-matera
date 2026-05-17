@@ -13,15 +13,15 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   return (
     <>
       {/* Hero */}
-      <section className="relative -mt-[72px] h-[100svh] min-h-[560px] w-full overflow-hidden">
-        {/* Desktop (≥ md): horizontal landscape photo */}
+      <section className="relative -mt-[72px] h-[100svh] min-h-[560px] w-full overflow-hidden bg-bottega-900">
+        {/* Desktop (≥ md): horizontal landscape photo — contained so more of the façade shows */}
         <Image
           src="/images/hero-desktop.jpg"
           alt="Le Botteghe — l'ingresso del ristorante a Matera"
           fill
           priority
           sizes="100vw"
-          className="hidden md:block object-cover"
+          className="hidden md:block object-contain"
         />
         {/* Mobile: vertical portrait photo */}
         <Image
@@ -36,13 +36,11 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <div className="absolute inset-0 bg-gradient-to-b from-bottega-900/15 via-bottega-900/20 to-bottega-900/85" />
 
         {/* Hero content */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-end pb-20 md:pb-28 px-6 text-center max-w-3xl mx-auto [text-shadow:0_2px_18px_rgba(12,24,18,0.55)]">
-          <Logo variant="light" size="lg" />
-          <div className="gold-rule" />
-          <p className="display text-cream-50 text-xl md:text-2xl leading-snug max-w-xl mx-auto">
+        <div className="relative z-10 flex h-full flex-col items-center justify-end pb-20 md:pb-28 px-6 text-center max-w-3xl mx-auto [text-shadow:0_2px_18px_rgba(12,24,18,0.7)]">
+          <p className="display text-cream-50 text-2xl md:text-4xl font-semibold leading-snug max-w-2xl mx-auto">
             {dict.hero.subtitle}
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center [text-shadow:none]">
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center [text-shadow:none]">
             <Link href={`${base}/reservation`} className="btn-gold">
               {dict.hero.bookNow}
             </Link>
