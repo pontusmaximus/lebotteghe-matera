@@ -172,6 +172,20 @@ async function main() {
   console.log(`✓ Admin user: ${email}`);
 
   // Wipe existing menu and reseed deterministically
+  // Skip menu seed if any category already exists — protects edits made via /admin.
+  // Set FORCE_RESEED=1 to wipe and reseed the entire menu.
+  const existing = await prisma.menuCategory.count();
+  if (existing > 0 && process.env.FORCE_RESEED !== '1') {
+    console.log(`↪ skipping menu seed (${existing} categories already exist). Set FORCE_RESEED=1 to overwrite.`);
+    await prisma.siteSetting.upsert({
+      where: { key: 'coperto_cents' },
+      update: { value: '300' },
+      create: { key: 'coperto_cents', value: '300' },
+    });
+    console.log('🎉 Seed complete (idempotent run)!');
+    return;
+  }
+
   await prisma.menuItem.deleteMany();
   await prisma.menuCategory.deleteMany();
 
