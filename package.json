@@ -12,7 +12,8 @@
     "db:migrate": "node scripts/sync-prisma-provider.mjs && prisma migrate deploy",
     "db:seed": "node scripts/sync-prisma-provider.mjs && prisma generate && node prisma/seed.mjs",
     "db:studio": "node scripts/sync-prisma-provider.mjs && prisma studio",
-    "setup": "npm install && npm run db:push && npm run db:seed"
+    "setup": "npm install && npm run db:push && npm run db:seed",
+    "init-prod-db": "node scripts/init-prod-db.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
