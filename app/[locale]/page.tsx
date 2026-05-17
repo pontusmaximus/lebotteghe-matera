@@ -36,21 +36,19 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <div className="absolute inset-0 bg-gradient-to-b from-bottega-900/15 via-bottega-900/20 to-bottega-900/85" />
 
         {/* Hero content */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-end pb-20 md:pb-28 px-6 text-center">
-          <div className="bg-bottega-900/30 backdrop-blur-[2px] border border-cream-50/15 px-8 md:px-14 py-8 md:py-10 max-w-3xl">
-            <Logo variant="light" size="lg" />
-            <div className="gold-rule" />
-            <p className="display text-cream-50 text-xl md:text-2xl leading-snug max-w-xl mx-auto">
-              {dict.hero.subtitle}
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href={`${base}/reservation`} className="btn-gold">
-                {dict.hero.bookNow}
-              </Link>
-              <Link href={`${base}/menu`} className="btn-outline-light">
-                {dict.hero.viewMenu}
-              </Link>
-            </div>
+        <div className="relative z-10 flex h-full flex-col items-center justify-end pb-20 md:pb-28 px-6 text-center max-w-3xl mx-auto [text-shadow:0_2px_18px_rgba(12,24,18,0.55)]">
+          <Logo variant="light" size="lg" />
+          <div className="gold-rule" />
+          <p className="display text-cream-50 text-xl md:text-2xl leading-snug max-w-xl mx-auto">
+            {dict.hero.subtitle}
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center [text-shadow:none]">
+            <Link href={`${base}/reservation`} className="btn-gold">
+              {dict.hero.bookNow}
+            </Link>
+            <Link href={`${base}/menu`} className="btn-outline-light">
+              {dict.hero.viewMenu}
+            </Link>
           </div>
         </div>
 
@@ -75,11 +73,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           </p>
         </div>
 
-        <div className="container-x mt-16 grid gap-10 md:grid-cols-3">
+        <div className="container-x mt-16">
+          <div className="grid gap-10 md:grid-cols-2 max-w-3xl mx-auto">
           {[
-            { title: dict.about.featurePrimi, desc: dict.about.featurePrimiDesc, icon: (
-              <path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8zm4 0h8M8 9h8M8 15h8" />
-            ) },
             { title: dict.about.featureMare, desc: dict.about.featureMareDesc, icon: (
               <path d="M5 12c2-4 8-4 12 0-4 4-10 4-12 0zm12 0l3-2m-3 2l3 2M9 12h.01" />
             ) },
@@ -97,6 +93,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
               <p className="mt-2 text-sm text-bottega-700/80 leading-relaxed">{f.desc}</p>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
