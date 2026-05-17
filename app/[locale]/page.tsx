@@ -14,14 +14,14 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     <>
       {/* Hero */}
       <section className="relative -mt-[72px] h-[100svh] min-h-[560px] w-full overflow-hidden bg-bottega-900">
-        {/* Desktop (≥ md): horizontal landscape photo — contained so more of the façade shows */}
+        {/* Desktop (≥ md): horizontal landscape photo, fills the viewport */}
         <Image
           src="/images/hero-desktop.jpg"
           alt="Le Botteghe — l'ingresso del ristorante a Matera"
           fill
           priority
           sizes="100vw"
-          className="hidden md:block object-contain"
+          className="hidden md:block object-cover"
         />
         {/* Mobile: vertical portrait photo */}
         <Image
